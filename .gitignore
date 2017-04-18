@@ -4,6 +4,8 @@ db.sqlite3
 #PyChar Idea special file
 .idea/
 
+Images/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
