@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('auth_app.urls')),
     url(r'^book/', include('book_app.urls')),
+    url(r'^profile/', include('profile_app.urls')),
 ]
