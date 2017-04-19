@@ -20,8 +20,9 @@ class Quote(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
 
 class Bookshelf(models.Model):
+    name = models.CharField(max_length=128, null=False, blank=False)
     user = models.ForeignKey(User)
-    books = models.ManyToManyField(Book)
+    books = models.ManyToManyField(Book, blank=True)
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name

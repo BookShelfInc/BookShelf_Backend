@@ -5,11 +5,17 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import JSONParser
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .models import Author, Book
-from .serializers import AuthorSerializer, BookSerializer
+from .models import Author, Book, Rate
+from .serializers import AuthorSerializer, BookSerializer, RateSerializer
 
 def getBooks(request):
     if(request.method == 'GET'):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
+def getRatings(request):
+    if(request.method == 'GET'):
+        ratings = Rate.objects.all()
+        serializer = RateSerializer(ratings, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)

@@ -10,7 +10,6 @@ def register(request):
         serialized = UserSerializer(data=data)
 
         if(serialized.is_valid()):
-            print('not valid')
             serialized.save()
             return JsonResponse(serialized.data, status=status.HTTP_200_OK)
         else:

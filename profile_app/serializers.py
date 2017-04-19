@@ -4,7 +4,6 @@ from book_app.serializers import BookSerializer
 from .models import Wishlist, Quote, Bookshelf
 
 class WishlistSerializer(serializers.ModelSerializer):
-    book = BookSerializer()
     class Meta:
         model = Wishlist
         fields = (
@@ -14,7 +13,6 @@ class WishlistSerializer(serializers.ModelSerializer):
         )
 
 class QuoteSerializer(serializers.ModelSerializer):
-    book = BookSerializer()
     class Meta:
         model = Quote
         fields = (
@@ -28,5 +26,17 @@ class BookshelfSerializer(serializers.ModelSerializer):
         model = Bookshelf
         fields = (
             'user',
-            'books'
+            'name',
+            'books',
         )
+
+class BookshelfAddSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bookshelf
+        fields = (
+            'id',
+            'books',
+        )
+
+    def create(self, validated_data):
+        return Bookshelf.objects.create(**validated_data)
