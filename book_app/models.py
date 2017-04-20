@@ -21,6 +21,17 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+class Review(models.Model):
+    review = models.TextField(null=False, blank=False)
+    user = models.ForeignKey(User)
+    book = models.ForeignKey(Book)
+
+    class Meta:
+        unique_together = (('user', 'book'))
+
+    def __str__(self):
+        return self.user.username + ' ' + self.book.title
+
 class Rate(models.Model):
     user = models.ForeignKey(User)
     book = models.ForeignKey(Book)
@@ -34,5 +45,8 @@ class Rate(models.Model):
     )
     rating = models.IntegerField(choices=rating_choices, null=False, blank=False)
 
+    class Meta:
+        unique_together = (('user', 'book'))
+
     def __str__(self):
-        return self.user.first_name + ' ' + self.book.title
+        return self.user.username + ' ' + self.book.title

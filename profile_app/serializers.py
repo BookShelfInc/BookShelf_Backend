@@ -7,6 +7,7 @@ class WishlistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wishlist
         fields = (
+            'id',
             'user',
             'book',
             'has_read'
@@ -16,6 +17,7 @@ class QuoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quote
         fields = (
+            'id',
             'quote',
             'user',
             'book'
@@ -25,6 +27,7 @@ class BookshelfSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookshelf
         fields = (
+            'id',
             'user',
             'name',
             'books',
@@ -34,9 +37,5 @@ class BookshelfAddSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookshelf
         fields = (
-            'id',
             'books',
         )
-
-    def create(self, validated_data):
-        return Bookshelf.objects.create(**validated_data)
