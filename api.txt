@@ -1,0 +1,123 @@
+# Auth
+1) /auth/register/ POST
+{
+    "username": "<username>",
+    "password": "<password>"
+}
+
+2) /auth/login/ POST
+{
+    "username": "<username>",
+    "password": "<password>"
+}
+return "token"
+
+# Book
+1)/book/all/ GET
+return all books
+
+2) /book/<book id>/ GET
+return book_detail
+
+3) /book/rate/ POST
+{
+    'user': user id,
+    'book': book id,
+    'rating': 1..5
+}
+
+4) /book/review/ POST
+{
+    'user': user id,
+    'book': book id,
+    'review': text,
+}
+
+# Profile
+1) /profile/wishlist/all/ GET
+return wishlist of user
+
+2) /profile/wishlist/add/ POST
+{
+    'user',
+    'book',
+    'has_read': 1/0
+}
+
+3) /profile/wishlist/delete/<wishlist id>/ POST
+
+4) /profile/quotes/all/ GET
+
+5) /profile/quotes/add/ POST
+{
+    'quote',
+    'user',
+    'book'
+}
+
+6) /profile/quotes/delete/<quote id>/ POST
+
+7) /profile/bookshelf/all/ GET
+
+8) /profile/bookshelf/create/ POST
+{
+    'user',
+    'name',
+    'books': [], //array, can be empty
+}
+
+9) /profile/bookshelf/manage/<bookshelf id>/ POST  // to add book to bookshelf
+{
+    'books': []
+}
+
+    /profile/bookshelf/manage/<bookshelf id>/ DELETE // to remove books from bookshelf
+{
+    'books': []
+}
+
+10) /profile/bookshelf/delete/<bookshelf id>/ POST // delete bookshelf
+
+
+# Blog
+1) /blog/posts/all/ GET // all posts
+
+2) /blog/posts/user/ GET // all posts of user
+
+3) /blog/posts/create/ POST
+{
+    'title': text,
+    'content': text,
+    'publish_date',
+    'author': <user id>,
+}
+
+4) /blog/post/comments/<post id>/ GET // post comments
+
+5) /blog/post/comments/create/ POST
+{
+    'content': text,
+    'publish_date',
+    'author': <user id>,
+    "post": <post id>
+}
+
+6) /blog/post/upvote/create/ POST // upvote post
+{
+    'author',
+    'post',
+    'like': 1/0
+}
+
+# Bazaar
+1) /bazaar/all/ GET
+
+2) /bazaar/create/ POST
+{
+   'book': <book id>,
+   'user': <user id>,
+   'price',
+   'publish_date',
+}
+
+3) /bazaar/delete/<bazaar id>/ POST

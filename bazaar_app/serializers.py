@@ -6,6 +6,7 @@ class BazaarBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = BazaarBook
         fields = (
+            'id',
             'book',
             'user',
             'price',
