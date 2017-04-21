@@ -7,7 +7,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id',
+            'is_manager',
             'username',
+            'first_name',
+            'last_name',
             'password'
         )
         extra_kwargs = {
