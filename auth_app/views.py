@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 
@@ -14,3 +14,4 @@ def register(request):
             return JsonResponse(serialized.data, status=status.HTTP_200_OK)
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+    return HttpResponse(status=400)
