@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'auth_app',
     'book_app',
     'profile_app',
@@ -134,6 +135,13 @@ MEDIA_URL = '/media/'
 # Custom user
 AUTH_USER_MODEL = 'auth_app.User'
 
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# this is the list of allowed origins for cross domain ajax
+CORS_ORIGIN_WHITELIST = (
+        'localhost:4200',
+)
 
 # Django Rest Framework
 REST_FRAMEWORK = {
