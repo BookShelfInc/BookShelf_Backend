@@ -135,12 +135,13 @@ MEDIA_URL = '/media/'
 # Custom user
 AUTH_USER_MODEL = 'auth_app.User'
 
-
+# Cors Headers
 CORS_ORIGIN_ALLOW_ALL = True
 
 # this is the list of allowed origins for cross domain ajax
 CORS_ORIGIN_WHITELIST = (
-        'localhost:4200',
+    'localhost:4200',
+    'http://localhost:4200',
 )
 
 # Django Rest Framework
