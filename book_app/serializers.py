@@ -20,6 +20,7 @@ class BookSerializer(serializers.ModelSerializer):
             'description',
             'author',
             'genre',
+            'cover',
         )
 
 class RateSerializer(serializers.ModelSerializer):
