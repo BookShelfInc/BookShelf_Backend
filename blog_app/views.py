@@ -43,7 +43,7 @@ def get_post_info(request, pk):
         except Post.DoesNotExist:
             return HttpResponse(status=404)
 
-        serialized = PostSerializer(post, many=True)
+        serialized = PostSerializer(post)
         return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
 
 @api_view(['POST'])
