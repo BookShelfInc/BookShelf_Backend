@@ -6,13 +6,15 @@ class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = (
+            'id',
             'first_name',
             'last_name',
             'biography',
+            'avatar',
         )
 
 class BookSerializer(serializers.ModelSerializer):
-    # author = AuthorSerializer()
+    author = AuthorSerializer()
     class Meta:
         model = Book
         fields = (
