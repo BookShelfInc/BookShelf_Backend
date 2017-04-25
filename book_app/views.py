@@ -59,3 +59,19 @@ def review_book(request):
             return JsonResponse(serialized.data, status=status.HTTP_201_CREATED)
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication, ])
+@permission_classes([IsAuthenticated, ])
+def iswrote_review(request):
+    if(request.method == 'POST'):
+        try:
+            review = Review.objects.filter(user=request.user)
+        except Review.DoesNotExist:
+            return HttpResponse(status=404)
+
+        if(review.count() > 0):
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=404)
+    return HttpResponse(status=404)
