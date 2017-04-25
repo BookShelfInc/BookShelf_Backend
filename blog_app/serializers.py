@@ -15,6 +15,16 @@ class CommentSerializer(serializers.ModelSerializer):
             'post',
         )
 
+class CommentCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = (
+            'content',
+            'publish_date',
+            'author',
+            'post',
+        )
+
 class UpvoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Upvote
