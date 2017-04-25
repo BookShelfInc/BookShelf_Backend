@@ -6,13 +6,31 @@ from rest_framework.parsers import JSONParser
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import Author, Book, Rate, Review
-from .serializers import AuthorSerializer, BookSerializer, RateSerializer, ReviewSerializer
+from .serializers import AuthorSerializer, AuthorInfoSerializer, BookSerializer, RateSerializer, ReviewSerializer
 
 def get_books(request):
     if(request.method == 'GET'):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
+def get_authors(request):
+    if(request.method == 'GET'):
+        authors = Author.objects.all()
+        serialized = AuthorSerializer(authors, many=True)
+        return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
+    return HttpResponse(status=404)
+
+def get_author_info(request, pk):
+    if(request.method == 'GET'):
+        try:
+            author = Author.objects.get(id=pk)
+        except Author.DoesNotExist:
+            return HttpResponse(status=404)
+
+        serialized = AuthorInfoSerializer(author)
+        return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
+    return HttpResponse(status=404)
 
 def book_detail(request, pk):
     try:

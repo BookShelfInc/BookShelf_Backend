@@ -43,3 +43,16 @@ class ReviewSerializer(serializers.ModelSerializer):
             'book',
             'review',
         )
+
+class AuthorInfoSerializer(serializers.ModelSerializer):
+    book_set = BookSerializer(many=True)
+    class Meta:
+        model = Author
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+            'biography',
+            'avatar',
+            'book_set',
+        )
