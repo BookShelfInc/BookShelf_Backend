@@ -4,6 +4,7 @@ from .models import Post, Comment, Upvote
 from auth_app.serializers import UserSerializer
 
 class CommentSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
     class Meta:
         model = Comment
         fields = (
