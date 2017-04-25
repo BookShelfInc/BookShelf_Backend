@@ -64,7 +64,7 @@ def review_book(request):
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
 def iswrote_review(request):
-    if(request.method == 'POST'):
+    if(request.method == 'GET'):
         try:
             review = Review.objects.filter(user=request.user)
         except Review.DoesNotExist:
