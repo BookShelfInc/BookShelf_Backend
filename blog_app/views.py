@@ -36,15 +36,14 @@ def create_post(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def get_comments(request, pk):
+def get_post_info(request, pk):
     if(request.method == 'GET'):
         try:
             post = Post.objects.get(pk=pk)
         except Post.DoesNotExist:
             return HttpResponse(status=404)
 
-        comments = post.comments
-        serialized = CommentSerializer(comments, many=True)
+        serialized = PostSerializer(post, many=True)
         return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
 
 @api_view(['POST'])
