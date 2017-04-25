@@ -6,7 +6,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import Post, Comment, Upvote
-from .serializers import PostSerializer, CommentSerializer, CommentCreateSerializer, UpvoteSerializer
+from .serializers import PostSerializer, PostCreateSerializer, CommentSerializer, CommentCreateSerializer, UpvoteSerializer
 
 def get_all_posts(request):
     if(request.method == 'GET'):
@@ -29,7 +29,7 @@ def get_user_posts(request):
 def create_post(request):
     if (request.method == 'POST'):
         data = JSONParser().parse(request)
-        serialized = PostSerializer(data=data)
+        serialized = PostCreateSerializer(data=data)
         if (serialized.is_valid()):
             serialized.save()
             return JsonResponse(serialized.data, status=status.HTTP_201_CREATED)

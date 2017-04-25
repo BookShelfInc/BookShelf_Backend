@@ -48,3 +48,14 @@ class PostSerializer(serializers.ModelSerializer):
             'author',
             'comments',
         )
+
+class PostCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = (
+            'title',
+            'content',
+            'publish_date',
+            'author',
+        )
+
