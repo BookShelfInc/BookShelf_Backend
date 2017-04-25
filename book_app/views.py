@@ -24,6 +24,16 @@ def book_detail(request, pk):
         serializer = BookSerializer(book)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
+def getBookReviews(request, pk):
+    if(request.method == 'GET'):
+        try:
+            reviews = Review.objects.filter(book=pk)
+        except Book.DoesNotExist:
+            return HttpResponse(status=404)
+        serializer = ReviewSerializer(reviews, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+    return HttpResponse(status=404)
+
 @api_view(['POST'])
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
