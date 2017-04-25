@@ -3,18 +3,6 @@ from rest_framework import serializers
 from .models import Post, Comment, Upvote
 from auth_app.serializers import UserSerializer
 
-class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer()
-    class Meta:
-        model = Post
-        fields = (
-            'id',
-            'title',
-            'content',
-            'publish_date',
-            'author',
-        )
-
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
@@ -34,4 +22,18 @@ class UpvoteSerializer(serializers.ModelSerializer):
             'author',
             'post',
             'like'
+        )
+
+class PostSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    comments = CommentSerializer(many=True)
+    class Meta:
+        model = Post
+        fields = (
+            'id',
+            'title',
+            'content',
+            'publish_date',
+            'author',
+            'comments',
         )
