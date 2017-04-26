@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from .models import Author, Book, Rate, Review
 
+from auth_app.serializers import UserSerializer
+
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
@@ -36,6 +38,7 @@ class RateSerializer(serializers.ModelSerializer):
         )
 
 class ReviewSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = Review
         fields = (
