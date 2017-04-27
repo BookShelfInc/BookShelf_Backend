@@ -47,6 +47,15 @@ class ReviewSerializer(serializers.ModelSerializer):
             'review',
         )
 
+class ReviewShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = (
+            'user',
+            'book',
+            'review',
+        )
+
 class AuthorInfoSerializer(serializers.ModelSerializer):
     book_set = BookSerializer(many=True)
     class Meta:

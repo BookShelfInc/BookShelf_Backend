@@ -6,7 +6,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import Author, Book, Rate, Review
-from .serializers import AuthorSerializer, AuthorInfoSerializer, BookSerializer, RateSerializer, ReviewSerializer
+from .serializers import AuthorSerializer, AuthorInfoSerializer, BookSerializer, RateSerializer, \
+    ReviewSerializer, ReviewShortSerializer
 
 def get_books(request):
     if(request.method == 'GET'):
@@ -71,7 +72,7 @@ def rate_book(request):
 def review_book(request):
     if(request.method == 'POST'):
         data = JSONParser().parse(request)
-        serialized = ReviewSerializer(data=data)
+        serialized = ReviewShortSerializer(data=data)
         if (serialized.is_valid()):
             serialized.save()
             return JsonResponse(serialized.data, status=status.HTTP_201_CREATED)
