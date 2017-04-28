@@ -85,8 +85,9 @@ def review_book(request):
 def iswrote_review(request, pk):
     if(request.method == 'GET'):
         try:
-            review = Review.objects.filter(user=request.user, book=pk)
+            review = Review.objects.get(user=request.user, book=pk)
         except Review.DoesNotExist:
             return HttpResponse(status=404)
+
         return HttpResponse(status=200)
     return HttpResponse(status=404)
