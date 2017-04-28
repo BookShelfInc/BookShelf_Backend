@@ -78,8 +78,11 @@ def delete_quote(request, pk):
     except Quote.DoesNotExist:
         return HttpResponse(status=404)
     if(request.method == 'POST'):
-        quote.delete()
-        return HttpResponse(status=200)
+        if(quote.user == request.user):
+            quote.delete()
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(400)
 
 ##################
 @api_view(['GET'])
