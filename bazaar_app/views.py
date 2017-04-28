@@ -21,7 +21,7 @@ def get_ad(request, pk):
         except BazaarBook.DoesNotExist:
             return HttpResponse(status=404)
         serialized = BazaarBookSerializer(ad)
-        return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
+        return JsonResponse(serialized.data, status=status.HTTP_200_OK)
     return HttpResponse(status=404)
 
 @api_view(['POST'])
