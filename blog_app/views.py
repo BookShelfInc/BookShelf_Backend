@@ -72,11 +72,11 @@ def create_upvote(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
+@api_view(['GET'])
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
 def is_liked(request, pk):
-    if (request.method == 'POST'):
+    if (request.method == 'GET'):
         try:
             upvote = Upvote.objects.filter(author=request.user, post=pk)
         except Upvote.DoesNotExist:
