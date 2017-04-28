@@ -14,6 +14,16 @@ def get_all_ads(request):
         serialized = BazaarBookSerializer(book_ads, many=True)
         return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
 
+def get_ad(request, pk):
+    if(request.method == 'GET'):
+        try:
+            ad = BazaarBook(pk=pk)
+        except BazaarBook.DoesNotExist:
+            return HttpResponse(status=404)
+        serialized = BazaarBookSerializer(ad)
+        return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
+    return HttpResponse(status=404)
+
 @api_view(['POST'])
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
