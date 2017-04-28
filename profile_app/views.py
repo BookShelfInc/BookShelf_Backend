@@ -8,7 +8,8 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from book_app.models import Book
 
 from .models import Wishlist, Quote, Bookshelf
-from .serializers import WishlistSerializer, QuoteSerializer, BookshelfSerializer, BookshelfAddSerializer
+from .serializers import WishlistSerializer, QuoteSerializer, BookshelfSerializer, \
+    BookshelfAddSerializer, WishlistCreateSerializer, QuoteCreateSerializer
 
 
 @api_view(['GET'])
@@ -26,7 +27,7 @@ def get_wishlist(request):
 def addbookto_wishlist(request):
     if(request.method == 'POST'):
         data = JSONParser().parse(request)
-        serialized = WishlistSerializer(data=data)
+        serialized = WishlistCreateSerializer(data=data)
         if (serialized.is_valid()):
             serialized.save()
             return JsonResponse(serialized.data, status=status.HTTP_201_CREATED)
@@ -61,7 +62,7 @@ def get_quotes(request):
 def add_quote(request):
     if(request.method == 'POST'):
         data = JSONParser().parse(request)
-        serialized = QuoteSerializer(data=data)
+        serialized = QuoteCreateSerializer(data=data)
         if (serialized.is_valid()):
             serialized.save()
             return JsonResponse(serialized.data, status=status.HTTP_201_CREATED)
