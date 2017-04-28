@@ -8,6 +8,9 @@ class Wishlist(models.Model):
     book = models.ForeignKey(Book)
     has_read = models.BooleanField(default=False)
 
+    class Meta:
+        unique_together = (('user', 'book'))
+
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
 
