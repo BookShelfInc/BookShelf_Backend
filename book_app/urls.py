@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^rate/$', rate_book),
     url(r'^review/$', review_book),
     url(r'^review/(?P<pk>[0-9]+)/$', getBookReviews),
-    url(r'^isreview/', iswrote_review),
+    url(r'^isreview/(?P<pk>[0-9]+)/$', iswrote_review),
     url(r'^author/all/', get_authors),
     url(r'^author/(?P<pk>[0-9]+)/', get_author_info),
 ]

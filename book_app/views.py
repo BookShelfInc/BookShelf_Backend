@@ -82,15 +82,11 @@ def review_book(request):
 @api_view(['GET'])
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
-def iswrote_review(request):
+def iswrote_review(request, pk):
     if(request.method == 'GET'):
         try:
-            review = Review.objects.filter(user=request.user)
+            review = Review.objects.filter(user=request.user, book=pk)
         except Review.DoesNotExist:
             return HttpResponse(status=404)
-
-        if(review.count() > 0):
-            return HttpResponse(status=200)
-        else:
-            return HttpResponse(status=404)
+        return HttpResponse(status=200)
     return HttpResponse(status=404)
