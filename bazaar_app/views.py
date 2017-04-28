@@ -17,7 +17,7 @@ def get_all_ads(request):
 def get_ad(request, pk):
     if(request.method == 'GET'):
         try:
-            ad = BazaarBook(pk=pk)
+            ad = BazaarBook.objects.get(pk=pk)
         except BazaarBook.DoesNotExist:
             return HttpResponse(status=404)
         serialized = BazaarBookSerializer(ad)
