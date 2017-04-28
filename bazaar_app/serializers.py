@@ -17,3 +17,14 @@ class BazaarBookSerializer(serializers.ModelSerializer):
             'price',
             'publish_date',
         )
+
+class BazaarCreateBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BazaarBook
+        fields = (
+            'id',
+            'book',
+            'user',
+            'price',
+            'publish_date',
+        )

@@ -6,7 +6,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import BazaarBook
-from .serializers import BazaarBookSerializer
+from .serializers import BazaarBookSerializer, BazaarCreateBookSerializer
 
 def get_all_ads(request):
     if(request.method == 'GET'):
@@ -30,7 +30,7 @@ def get_ad(request, pk):
 def create_bazaar_ad(request):
     if(request.method == 'POST'):
         data = JSONParser().parse(request)
-        serialized = BazaarBookSerializer(data=data)
+        serialized = BazaarCreateBookSerializer(data=data)
         if (serialized.is_valid()):
             serialized.save()
             return JsonResponse(serialized.data, status=status.HTTP_201_CREATED)
