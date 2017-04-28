@@ -38,6 +38,7 @@ class UpvoteSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     author = UserSerializer()
     comments = CommentSerializer(many=True)
+    upvotes = UpvoteSerializer(many=True)
     class Meta:
         model = Post
         fields = (
@@ -47,6 +48,7 @@ class PostSerializer(serializers.ModelSerializer):
             'publish_date',
             'author',
             'comments',
+            'upvotes',
         )
 
 class PostCreateSerializer(serializers.ModelSerializer):

@@ -25,5 +25,8 @@ class Upvote(models.Model):
     post = models.ForeignKey(Post, null=False, related_name='upvotes', on_delete=models.CASCADE)
     like = models.BooleanField(null=False, blank=False)
 
+    class Meta:
+        unique_together = (('author', 'post'))
+
     def __str__(self):
         return self.author.username + ' ' + self.post.title
