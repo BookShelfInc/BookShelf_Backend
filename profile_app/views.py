@@ -69,9 +69,6 @@ def add_quote(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-@authentication_classes([JSONWebTokenAuthentication, ])
-@permission_classes([IsAuthenticated, ])
 def delete_quote(request, pk):
     try:
         quote = Quote.objects.get(pk=pk)
