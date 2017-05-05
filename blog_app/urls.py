@@ -9,8 +9,8 @@ urlpatterns = [
     url(r'^post/delete/(?P<pk>[0-9]+)/$', delete_post),
     url(r'^post/create/$', create_post),
     url(r'^post/(?P<pk>[0-9]+)/$', get_post_info),
-    url(r'^post/comments/create/$', create_comment),
-    url(r'^post/comments/delete/(?P<pk>[0-9]+)/$', delete_comment),
+    url(r'^post/comment/create/$', create_comment),
+    url(r'^post/comment/delete/(?P<pk>[0-9]+)/$', delete_comment),
     url(r'^post/upvote/create/$', create_upvote),
     url(r'^post/upvote/isliked/(?P<pk>[0-9]+)/$', is_liked),
 ]
