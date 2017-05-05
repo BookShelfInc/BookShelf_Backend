@@ -14,11 +14,11 @@ def get_all_posts(request):
         serialized = PostSerializer(posts, many=True)
         return JsonResponse(serialized.data, status=status.HTTP_200_OK, safe=False)
 
-@api_view(['GET'])
+@api_view(['POST'])
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
 def get_user_posts(request):
-    if (request.method == 'GET'):
+    if (request.method == 'POST'):
         bookshelf = Post.objects.filter(author=request.user)
         serializer = PostSerializer(bookshelf, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
