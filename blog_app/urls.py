@@ -5,7 +5,7 @@ from .views import get_all_posts, get_user_posts, create_post, get_post_info, cr
 
 urlpatterns = [
     url(r'^post/all/$', get_all_posts),
-    url(r'^post/user/$', get_user_posts),
+    url(r'^post/user/(?P<pk>[0-9]+)/$', get_user_posts),
     url(r'^post/delete/(?P<pk>[0-9]+)/$', delete_post),
     url(r'^post/create/$', create_post),
     url(r'^post/(?P<pk>[0-9]+)/$', get_post_info),
