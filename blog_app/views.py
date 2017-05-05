@@ -16,7 +16,7 @@ def get_all_posts(request):
 
 def get_user_posts(request, pk):
     if (request.method == 'GET'):
-        bookshelf = Post.objects.filter(author=request.user)
+        bookshelf = Post.objects.filter(author=pk)
         serializer = PostSerializer(bookshelf, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
