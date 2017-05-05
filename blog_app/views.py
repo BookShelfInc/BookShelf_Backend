@@ -33,9 +33,9 @@ def create_post(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-@authentication_classes([JSONWebTokenAuthentication, ])
-@permission_classes([IsAuthenticated, ])
+# @api_view(['POST'])
+# @authentication_classes([JSONWebTokenAuthentication, ])
+# @permission_classes([IsAuthenticated, ])
 def delete_post(request, pk):
     if(request.method == 'POST'):
         try:
@@ -70,9 +70,9 @@ def create_comment(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-@authentication_classes([JSONWebTokenAuthentication, ])
-@permission_classes([IsAuthenticated, ])
+# @api_view(['POST'])
+# @authentication_classes([JSONWebTokenAuthentication, ])
+# @permission_classes([IsAuthenticated, ])
 def delete_comment(request, pk):
     if(request.method == 'POST'):
         try:

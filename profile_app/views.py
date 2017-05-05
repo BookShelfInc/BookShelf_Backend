@@ -34,9 +34,9 @@ def addbookto_wishlist(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-@authentication_classes([JSONWebTokenAuthentication, ])
-@permission_classes([IsAuthenticated, ])
+# @api_view(['POST'])
+# @authentication_classes([JSONWebTokenAuthentication, ])
+# @permission_classes([IsAuthenticated, ])
 def delete_wishlist(request, pk):
     try:
         wishlist = Wishlist.objects.get(pk=pk)
@@ -69,13 +69,16 @@ def add_quote(request):
         else:
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# @api_view(['POST'])
+# @authentication_classes([JSONWebTokenAuthentication, ])
+# @permission_classes([IsAuthenticated, ])
 def delete_quote(request, pk):
     if(request.method == 'POST'):
         try:
             quote = Quote.objects.get(pk=pk)
         except Quote.DoesNotExist:
             return HttpResponse(status=404)
-        
+
         quote.delete()
         return HttpResponse(status=200)
 
