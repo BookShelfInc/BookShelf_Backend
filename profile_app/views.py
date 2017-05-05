@@ -70,16 +70,14 @@ def add_quote(request):
             return JsonResponse(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
 def delete_quote(request, pk):
-    try:
-        quote = Quote.objects.get(pk=pk)
-    except Quote.DoesNotExist:
-        return HttpResponse(status=404)
     if(request.method == 'POST'):
-        if(quote.user == request.user):
-            quote.delete()
-            return HttpResponse(status=200)
-        else:
-            return HttpResponse(400)
+        try:
+            quote = Quote.objects.get(pk=pk)
+        except Quote.DoesNotExist:
+            return HttpResponse(status=404)
+        
+        quote.delete()
+        return HttpResponse(status=200)
 
 ##################
 @api_view(['GET'])
